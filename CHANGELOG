@@ -1,0 +1,13 @@
+testsuite-h100-ecoc-demo (1.2) stable; urgency=medium
+
+  * Removed dependencies on H1 'analyzer' node.
+  * Added yuma123 public repository installation instructions to README
+  * Modified traffic configuration. (Raimena)
+
+ -- Vladimir Vassilev <vladimir@transpacekt.com>  Thu, 13 Sep 2018 14:30:38 +0200
+
+testsuite-h100-ecoc-demo (1.1) stable; urgency=medium
+
+  * Initial version.
+
+ -- Vladimir Vassilev <vladimir@transpacekt.com>  Mon, 3 Sep 2018 02:59:17 +0200

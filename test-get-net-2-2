@@ -1,0 +1,2 @@
+#!/bin/bash -e
+get-net ./topology.xml get-net/2-2.xml

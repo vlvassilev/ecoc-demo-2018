@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <networks xmlns="urn:ietf:params:xml:ns:yang:ietf-network">
+    <network>
+      <network-id>h100-1dot6-low-level-fusion-streams-test-network</network-id>
+      <node>
+        <node-id>analyzer</node-id>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>xe0</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge0</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge1</tp-id>
+        </termination-point>
+        <netconf-connect-params xmlns="urn:tntapi:netconf-node">
+          <user>root</user>
+          <password>transpacketdemo</password>
+          <server>185.35.202.53</server>
+          <ncport>830</ncport>
+        </netconf-connect-params>
+      </node>
+      <node>
+        <node-id>local</node-id>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge0</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge1</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge2</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge3</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge4</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge5</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge6</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge7</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge8</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge9</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge15</tp-id>
+        </termination-point>
+        <netconf-connect-params xmlns="urn:tntapi:netconf-node">
+          <user>pi</user>
+          <password>transpacketdemo</password>
+          <server>185.35.202.50</server>
+          <ncport>830</ncport>
+        </netconf-connect-params>
+      </node>
+      <node>
+        <node-id>remote</node-id>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge0</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge1</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge2</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge3</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge4</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge5</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge6</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge7</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge8</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge9</tp-id>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge15</tp-id>
+        </termination-point>
+        <netconf-connect-params xmlns="urn:tntapi:netconf-node">
+          <user>pi</user>
+          <password>transpacketdemo</password>
+          <server>185.35.202.52</server>
+          <ncport>830</ncport>
+        </netconf-connect-params>
+      </node>
+      <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <source>
+          <source-node>analyzer</source-node>
+          <source-tp>ge0</source-tp>
+        </source>
+        <destination>
+          <dest-node>analyzer</dest-node>
+          <dest-tp>ge0</dest-tp>
+        </destination>
+        <link-id>analyzer.ge0-analyzer.ge0</link-id>
+      </link>
+      <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <source>
+          <source-node>analyzer</source-node>
+          <source-tp>xe0</source-tp>
+        </source>
+        <destination>
+          <dest-node>analyzer</dest-node>
+          <dest-tp>xe0</dest-tp>
+        </destination>
+        <link-id>analyzer.xe0-analyzer.xe0</link-id>
+      </link>
+    </network>
+  </networks>
+</config>

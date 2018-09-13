@@ -1,0 +1,3 @@
+#!/bin/bash -e
+python ./common/test-netconf-node-access.tntapi.py --config=topology.xml
+

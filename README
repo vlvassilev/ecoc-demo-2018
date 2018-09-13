@@ -1,0 +1,111 @@
+=Files=
+* topology.svg - topology diagram
+* topology.xml - ietf-network model based network spec. Edit to change network addresses, authorization credentials etc.
+* configure.ac - autoconf build script
+* Makefile.am - automake build script (contains the list of all testcases)
+
+=Running=
+ apt-get update
+ apt-get -y upgrade
+ 
+ apt-get -y install software-properties-common
+ add-apt-repository -s "deb http://yuma123.org/repos/apt/debian stretch main"
+ wget -O - http://yuma123.org/repos/yuma123.gpg.key | apt-key add - apt-get update
+ apt-get install python-tntapi netconfd yangcli transpacket
+ autoreconf -i -f
+ ./configure
+ make check
+
+=Reports=
+* test-suite.log - overview
+* test-*.log - individual test reports
+
+=Test Network Setup=
+2x H100 1.6 VCU-110 systems,  1x H100 1.0  and an optional traffic analyzer are connected according to the following diagram: [[File:testsuite-h100-ecoc-demo-topology.svg]]
+
+Further in the document the elements will be referred to as:
+* local - the left H100 1.6
+* remote - the right H100 1.6
+* middle - the H100 1.0 in the middle
+* analyzer (optional) - the H1 analyzer
+
+Details about the actual networking addresses and authorization are specified in the topology.xml file and if there is a change in the setup this file needs to be updated before running.
+
+=References=
+# Transpacket AS, "VCU-110 Prototype r1.6"
+# Transpacket AS, "H100 r.1.6 NETCONF/YANG usecase examples using the low level Fusion core model."
+# RFC6241 Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed., and A. Bierman, Ed., "Network Configuration Protocol (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011, <http://www.rfc-editor.org/info/rfc6241>.
+
+=Test specification=
+Test cases included in the suite:
+# validate-topology-config
+# netconf-node-access
+# setup-idle
+# setup-fusion-streams-yangcli
+# get-net-[1,2-1,3,2-2]
+# setup-traffic-analyzers
+# setup-loopbacks
+# setup-traffic-generators
+# diff-net
+# set-net-2-1
+
+Every test case is implemented as executable named test-<testcase-name> and can be started individually e.g ./test-setup-idle
+
+The test cases produce output with formal NETCONF transactions data (state and configuration) so that every single action taken by the test case can be traced back and reported results according to the "Reported results" section described in each test case. All the information is printed to the standard output (no other files containing test report data are created). The return status of the executable is indication of the requirements for the specified validations and acceptance criteria were met. Following the common Unix convention 0=success, not(0)=error-code.
+
+A detailed specification for each test case part of the suite follows with this information structure:
+
+ + Objective
+ + Procedure
+ + DUT Configuration(s)
+ + Steps
+ +--- []
+    +--- Validates ...
+    +--- Returns ...
+ + Reported results
+ + Acceptance criteria
+
+==Testcase: validate-topology-config==
+===Objective===
+Validate the topology.xml has correct XML format and no YANG syntactic or semantic errors.
+===Procedure===
+Call netconfd in --validate-config-only mode.
+
+==Testcase: netconf-node-access==
+===Objective===
+Validate all nodes part of the test setup network are accessible over NETCONF.
+===Procedure===
+Establish connections to all nodes specified in the topology.xml file using the common testapi API.
+===DUT configuration===
+N.A
+====Steps====
+# Connect to all nodes specified in the topology.xml with testapi.network_connect(network)
+## Validate the operation succeeds.
+
+==Testcase: setup-idle==
+===Objective===
+Load idle configurations to local, remote and middle and verify idle devices behave as expected.
+===Procedure===
+After committing idle configurations validate not counters are running.
+===DUT configuration===
+Idle configuration e.g. delete /fusion-streams and other top level containers.
+
+====Steps====
+# Delete /fusion-streams on local and remote and commit.
+## No counters are being incremented.
+
+==Testcase: setup-*==
+===Objective===
+Each of the setup-* testcases carry out a incremental step in the sequence of creating a complete benchmark test.
+
+==Testcase: get-net-[1,2-1,3,2-2]==
+===Objective===
+Using the get-net commannd line tool create snapshot of the network.
+
+==Testcase: set-net-2-1==
+===Objective===
+Using the set-net commannd line tool restore configuration snapshot of the network of a previously captured with get-net configuration.
+
+==Testcase: diff-net==
+===Objective===
+Compare and print all counters of 2 consequtive network snapshot copies.

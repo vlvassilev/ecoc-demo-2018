@@ -1,0 +1,3 @@
+#!/bin/bash -e
+cd setup-traffic-analyzers
+./run.sh

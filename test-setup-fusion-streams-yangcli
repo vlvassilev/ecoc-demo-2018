@@ -1,0 +1,3 @@
+#!/bin/bash -e
+cd setup-fusion-streams-yangcli
+./run.sh

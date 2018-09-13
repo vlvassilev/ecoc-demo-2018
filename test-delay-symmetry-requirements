@@ -1,0 +1,3 @@
+#!/bin/bash -e
+cd delay-symmetry-requirements
+./run.sh

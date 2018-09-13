@@ -1,0 +1,3 @@
+#!/bin/bash -e
+cd fusion-np-tx-gst-multicast-contentions
+./run.sh
