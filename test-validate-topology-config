@@ -6,4 +6,4 @@ if [ "$#" -gt 0 ]; then
 else
     CONFIG_FILE=topology.xml
 fi
-/usr/sbin/netconfd --validate-config-only --module=/usr/share/yuma/modules/ietf/ietf-network-topology@2018-02-26.yang --module=tntapi-netconf-node --startup=${CONFIG_FILE} --log-level=debug4
+/usr/sbin/netconfd --validate-config-only --module=/usr/share/yuma/modules/ietf/ietf-network-topology@2018-02-26.yang --module=tntapi-netconf-node --module=tntapi-traffic-graphic --startup=${CONFIG_FILE} --log-level=debug4

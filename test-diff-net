@@ -1,4 +1,5 @@
 #!/bin/bash -e
-cd diff-net
-./run.sh
-
+echo "Traffic pattern #1"
+diff-net 4.xml 7.xml
+echo "Traffic pattern #2"
+diff-net 8.xml 11.xml

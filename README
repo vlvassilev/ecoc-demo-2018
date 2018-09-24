@@ -10,30 +10,77 @@
  
  apt-get -y install software-properties-common
  add-apt-repository -s "deb http://yuma123.org/repos/apt/debian stretch main"
- wget -O - http://yuma123.org/repos/yuma123.gpg.key | apt-key add - apt-get update
- apt-get install python-tntapi netconfd yangcli transpacket
+ wget -O - http://yuma123.org/repos/yuma123.gpg.key | apt-key add -
+ apt-get update
+
+ apt-get -y install h100-ecoc-demo
+ cd /opt/testsuite-h100-ecoc-demo
  autoreconf -i -f
  ./configure
+
+Make sure your topology.xml has correct server/port/username/password configuration:
+
  make check
+
+This should complete with OKs (some scripts report fail if there is external traffic generator incrementing counters)
+
+To start the continuous monitor (updates the files referenced by monitor/index.html for graphical representation of the traffic and periodic reports):
+
+ ./test-monitor
+
+Here is example of the output of the monitor:
+
+[[File:testsuite-h100-ecoc-demo-topology.svg]]
+ <nowiki>
+Report time: 20:25:19
+
+1. Period:
++------------+---------------------+---------------------+--------------+
+|    node    |       start         |         stop        |     period   |
++------------+---------------------+---------------------+--------------+
+| middle     | 2018-09-22T18:24:20 | 2018-09-22T18:25:00 |       40.000 |
+| local      | 2018-09-22T18:24:20 | 2018-09-22T18:25:00 |       40.000 |
+| remote     | 2018-09-22T18:24:20 | 2018-09-22T18:25:00 |       40.000 |
++------------+---------------------+---------------------+--------------+
+2. Data transfer rate:
++------------+--------------+-------+
+|  if name   |       MB/s   |   %   |
++------------+--------------+-------+
+| middle.xe0 |       3412   |   29  |
+| remote.xe0 |       6773   |   57  |
++------------+--------------+-------+
+
+3. Timing:
++-----------+--------------+-------------+--------------+---------------+
+|  if name  |  delay-min   |  delay-max  |      PDV     |     samples   |
++-----------+--------------+-------------+--------------+---------------+
+| local.ge1 |      7353 ns |      7456 ns|       103 ns |    228883040  |
+| local.ge2 |      7347 ns |      7449 ns|       102 ns |    229662467  |
+| local.ge3 |      7398 ns |      7494 ns|        96 ns |    230612730  |
+| local.ge4 |         0 ns |         0 ns|         0 ns |            0  |
++-----------+--------------+-------------+--------------+---------------+
+</nowiki>
+
+==Device side==
+There are 3 scripts in ./setup (run-netconfd-local.sh, run-netconfd-middle.sh, run-netconfd-remote.sh) that can start the netconfd instances for each node with the correct parameters. Use those to either connect to the VCU-110 cards directly or to connect to another netconfd providing register access. In case there is external host that runs netconfd make sure the parameters are identical e.g. all expected modules are loaded.
 
 =Reports=
 * test-suite.log - overview
 * test-*.log - individual test reports
 
 =Test Network Setup=
-2x H100 1.6 VCU-110 systems,  1x H100 1.0  and an optional traffic analyzer are connected according to the following diagram: [[File:testsuite-h100-ecoc-demo-topology.svg]]
+2x H100 1.6 prototype VCU-110 systems,  1x H100 1.0 prototype and an optional traffic analyzer.
 
 Further in the document the elements will be referred to as:
 * local - the left H100 1.6
 * remote - the right H100 1.6
 * middle - the H100 1.0 in the middle
-* analyzer (optional) - the H1 analyzer
+* analyzer (optional)
 
 Details about the actual networking addresses and authorization are specified in the topology.xml file and if there is a change in the setup this file needs to be updated before running.
 
 =References=
 # Transpacket AS, "VCU-110 Prototype r1.6"
-# Transpacket AS, "H100 r.1.6 NETCONF/YANG usecase examples using the low level Fusion core model."
 # RFC6241 Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed., and A. Bierman, Ed., "Network Configuration Protocol (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011, <http://www.rfc-editor.org/info/rfc6241>.
 
 =Test specification=
@@ -42,6 +89,7 @@ Test cases included in the suite:
 # netconf-node-access
 # setup-idle
 # setup-fusion-streams-yangcli
+# setup-network-bridge-yangcli
 # get-net-[1,2-1,3,2-2]
 # setup-traffic-analyzers
 # setup-loopbacks
@@ -98,11 +146,11 @@ Idle configuration e.g. delete /fusion-streams and other top level containers.
 ===Objective===
 Each of the setup-* testcases carry out a incremental step in the sequence of creating a complete benchmark test.
 
-==Testcase: get-net-[1,2-1,3,2-2]==
+==Testcase: get-net-[0-12]==
 ===Objective===
-Using the get-net commannd line tool create snapshot of the network.
+Using the get-net commannd line tool create snapshot of the network for each transaction.
 
-==Testcase: set-net-2-1==
+==Testcase: set-net-*==
 ===Objective===
 Using the set-net commannd line tool restore configuration snapshot of the network of a previously captured with get-net configuration.
 

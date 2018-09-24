@@ -1,3 +1,3 @@
 #!/bin/bash -e
-get-net ./topology.xml get-net/3.xml
+get-net topology.xml 3.xml
 

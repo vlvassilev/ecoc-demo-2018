@@ -1,13 +1,24 @@
+testsuite-h100-ecoc-demo (1.3) stable; urgency=medium
+
+  * Removed dependencies on commercial devices.
+  * Added ./test-monitor continuous script generating text and graphic reports
+  * Added monitor/index.html that presents the reports with 5 sec refresh rate
+  * Added debian package installing the testsuite in /opt/testsuite-h100-ecoc-demo
+  * Added ietf-network-bridge-flows configuration mirroring the proprietary fusion-streams model
+
+ -- Vladimir Vassilev <vladimir@transpacket.com>  Mon, 24 Sep 2018 10:18:34 +0200
+
 testsuite-h100-ecoc-demo (1.2) stable; urgency=medium
 
   * Removed dependencies on H1 'analyzer' node.
   * Added yuma123 public repository installation instructions to README
   * Modified traffic configuration. (Raimena)
 
- -- Vladimir Vassilev <vladimir@transpacekt.com>  Thu, 13 Sep 2018 14:30:38 +0200
+ -- Vladimir Vassilev <vladimir@transpacket.com>  Thu, 13 Sep 2018 14:30:38 +0200
 
 testsuite-h100-ecoc-demo (1.1) stable; urgency=medium
 
   * Initial version.
 
- -- Vladimir Vassilev <vladimir@transpacekt.com>  Mon, 3 Sep 2018 02:59:17 +0200
+ -- Vladimir Vassilev <vladimir@transpacket.com>  Mon, 3 Sep 2018 02:59:17 +0200
+

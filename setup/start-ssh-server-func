@@ -1,0 +1,18 @@
+# common start_ssh_server function
+
+start_ssh_server () {
+  instance=$1
+  echo ${instance}
+  kill -KILL `fuser --ipv4 -v -n tcp ${instance}830 2>/dev/null` || true
+  cat > /tmp/sshd_config_${instance}830 << EOF
+ChallengeResponseAuthentication no
+UsePAM yes
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server
+PermitRootLogin yes
+Port ${instance}830
+Subsystem netconf "/usr/sbin/netconf-subsystem --ncxserver-sockname=${instance}830@/tmp/ncxserver.${instance}830.sock"
+EOF
+  sudo /usr/sbin/sshd -f /tmp/sshd_config_${instance}830
+}
+

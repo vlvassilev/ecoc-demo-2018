@@ -44,6 +44,18 @@ def validate_step_1(before, after):
  
 
 def step_1(network, conns, filter=filter):
+
+	idle_config_bridge = """
+  <config>
+    <bridge xmlns="urn:ietf:params:xml:ns:yang:ietf-network-bridge" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="replace"/>
+    <flows xmlns="urn:ietf:params:xml:ns:yang:ietf-network-bridge-flows" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="replace"/>
+    <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces" nc:operation="replace"/>
+  </config>
+"""
+        tntapi.edit_config(conns["local"],idle_config_bridge)
+        tntapi.edit_config(conns["remote"],idle_config_bridge)
+        tntapi.edit_config(conns["middle"],idle_config_bridge)
+
 	idle_config_h100_1dot6 = """
   <config>
     <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="replace">

@@ -1,0 +1,33 @@
+Source: testsuite-h100-ecoc-demo
+Section: net
+Priority: optional
+Maintainer: Vladimir Vassilev <vladimir@transpacket.com>
+Build-Depends: debhelper (>= 9), rsync
+Standards-Version: 3.9.8
+Homepage: http://transpacket.com
+
+Package: testsuite-h100-ecoc-demo
+Section: net
+Architecture: all
+Depends: ${misc:Depends}, make, autoconf, libtool,
+  libapache2-mod-yangrpc-example,
+  libyangrpc2,
+  libyangrpc-dev,
+  libyuma2,
+  libyuma-base,
+  libyuma-dev,
+  netconfd,
+  netconfd-module-ietf-interfaces,
+  netconfd-module-ietf-system,
+  python-litenc,
+  python-tntapi,
+  python-yuma,
+  transpacket (>= 5.3),
+  transpacket-base,
+  yangcli,
+  yangdump
+Multi-Arch: foreign
+Description: Testsuite with validation and monitoring scripts for ECOC 2018 demo
+ This package installs a testsuite under /opt/testsuite-h100-ecoc-demo
+ .
+ The installed testsuite includes README that explains how to use the scripts.

@@ -7,153 +7,254 @@
         <node-id>middle</node-id>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>xe0</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>378</x><y>426</y><ingress-direction>right</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>xe1</tp-id>
+          <!--<indicator xmlns="urn:tntapi:traffic-graphic"><x>572</x><y>426</y><ingress-direction>left</ingress-direction></indicator>-->
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge0</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>391</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge1</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>417.44</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge2</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>443.88</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge3</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>470.32</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge4</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>496.76</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge5</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>523.20</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge6</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>549.64</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge7</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>576.08</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge8</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>602.52</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge9</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>628.96</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <netconf-connect-params xmlns="urn:tntapi:netconf-node">
           <user>pi</user>
-          <password>transpacketdemo</password>
           <server>185.35.202.50</server>
           <ncport>17830</ncport>
+          <password>ecocdemo</password>
         </netconf-connect-params>
+        <netconf-get-filter xmlns="urn:tntapi:netconf-node">
+          <filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" type="subtree">
+<system-state xmlns="urn:ietf:params:xml:ns:yang:ietf-system"/>
+<interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface><name>xe0</name></interface>
+  <interface><name>xe1</name></interface>
+  <interface><name>ge0</name></interface>
+  <interface><name>ge1</name></interface>
+  <interface><name>ge2</name></interface>
+  <interface><name>ge3</name></interface>
+  <interface><name>ge4</name></interface>
+  <interface><name>ge5</name></interface>
+  <interface><name>ge6</name></interface>
+  <interface><name>ge7</name></interface>
+  <interface><name>ge8</name></interface>
+  <interface><name>ge9</name></interface>
+</interfaces-state>
+</filter>
+        </netconf-get-filter>
       </node>
       <node>
         <node-id>local</node-id>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge15</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>45</x><y>426</y><ingress-direction>right</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>xe0</tp-id>
-        </termination-point>
-        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-          <tp-id>ge0</tp-id>
-        </termination-point>
-        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-          <tp-id>ge1</tp-id>
-        </termination-point>
-        <netconf-connect-params xmlns="urn:tntapi:netconf-node">
-          <user>pi</user>
-          <password>transpacketdemo</password>
-          <server>185.35.202.50</server>
-          <ncport>830</ncport>
-        </netconf-connect-params>
-      </node>
-      <node>
-        <node-id>remote</node-id>
-        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-          <tp-id>ge15</tp-id>
-        </termination-point>
-        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-          <tp-id>xe0</tp-id>
-        </termination-point>
-        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-          <tp-id>ge0</tp-id>
-        </termination-point>
-        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-          <tp-id>ge1</tp-id>
-        </termination-point>
-        <netconf-connect-params xmlns="urn:tntapi:netconf-node">
-          <user>pi</user>
-          <password>transpacketdemo</password>
-          <server>185.35.202.52</server>
-          <ncport>830</ncport>
-        </netconf-connect-params>
-      </node>
-      <node>
-        <node-id>analyzer</node-id>
-        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-          <tp-id>xe0</tp-id>
+          <!--<indicator xmlns="urn:tntapi:traffic-graphic"><x>222</x><y>426</y><ingress-direction>left</ingress-direction></indicator>-->
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>xe1</tp-id>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge0</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>40</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
           <tp-id>ge1</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>66.44</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge2</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>92.88</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge3</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>119.32</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge4</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>145.76</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge5</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>172.20</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge6</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>198.64</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge7</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>225.08</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge8</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>251.52</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge9</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>277.96</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
         </termination-point>
         <netconf-connect-params xmlns="urn:tntapi:netconf-node">
-          <user>root</user>
-          <password>transpacketdemo</password>
-          <server>185.35.202.53</server>
+          <user>pi</user>
+          <server>185.35.202.50</server>
           <ncport>830</ncport>
+          <password>ecocdemo</password>
+        </netconf-connect-params>
+        <netconf-get-filter xmlns="urn:tntapi:netconf-node">
+          <filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" type="subtree">
+<system-state xmlns="urn:ietf:params:xml:ns:yang:ietf-system"/>
+<interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface><name>xe0</name></interface>
+  <interface><name>ge0</name></interface>
+  <interface><name>ge1</name></interface>
+  <interface><name>ge2</name></interface>
+  <interface><name>ge3</name></interface>
+  <interface><name>ge4</name></interface>
+  <interface><name>ge5</name></interface>
+  <interface><name>ge6</name></interface>
+  <interface><name>ge7</name></interface>
+  <interface><name>ge8</name></interface>
+  <interface><name>ge9</name></interface>
+  <interface><name>ge15</name></interface>
+</interfaces-state>
+</filter>
+        </netconf-get-filter>
+      </node>
+      <node>
+        <node-id>remote</node-id>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge15</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>955</x><y>426</y><ingress-direction>left</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>xe0</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>765</x><y>426</y><ingress-direction>right</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge0</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>762</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge1</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>788.4</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge2</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>814.88</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge3</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>841.32</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge4</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>867.76</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge5</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>894.20</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge6</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>920.64</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge7</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>947.08</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge8</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>973.52</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <tp-id>ge9</tp-id>
+          <indicator xmlns="urn:tntapi:traffic-graphic"><x>999.96</x><y>200</y><ingress-direction>up</ingress-direction></indicator>
+        </termination-point>
+        <netconf-get-filter xmlns="urn:tntapi:netconf-node">
+          <filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" type="subtree">
+<system-state xmlns="urn:ietf:params:xml:ns:yang:ietf-system"/>
+<interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface><name>xe0</name></interface>
+  <interface><name>ge0</name></interface>
+  <interface><name>ge1</name></interface>
+  <interface><name>ge2</name></interface>
+  <interface><name>ge3</name></interface>
+  <interface><name>ge4</name></interface>
+  <interface><name>ge5</name></interface>
+  <interface><name>ge6</name></interface>
+  <interface><name>ge7</name></interface>
+  <interface><name>ge8</name></interface>
+  <interface><name>ge9</name></interface>
+  <interface><name>ge15</name></interface>
+</interfaces-state>
+</filter>
+        </netconf-get-filter>
+        <netconf-connect-params xmlns="urn:tntapi:netconf-node">
+          <user>pi</user>
+          <server>185.35.202.52</server>
+          <ncport>830</ncport>
+          <password>ecocdemo</password>
         </netconf-connect-params>
       </node>
       <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
         <source>
-          <source-node>analyzer</source-node>
-          <source-tp>ge0</source-tp>
-        </source>
-        <destination>
-          <dest-node>local</dest-node>
-          <dest-tp>ge15</dest-tp>
-        </destination>
-        <link-id>analyzer.ge0-local.ge15</link-id>
-      </link>
-      <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <source>
-          <source-node>analyzer</source-node>
-          <source-tp>xe0</source-tp>
-        </source>
-        <destination>
-          <dest-node>local</dest-node>
-          <dest-tp>ge0</dest-tp>
-        </destination>
-        <link-id>analyzer.xe0-local.ge0</link-id>
-      </link>
-      <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <source>
-          <source-node>analyzer</source-node>
+          <source-node>local</source-node>
           <source-tp>xe1</source-tp>
         </source>
         <destination>
-          <dest-node>remote</dest-node>
-          <dest-tp>ge0</dest-tp>
+          <dest-node>middle</dest-node>
+          <dest-tp>xe0</dest-tp>
         </destination>
-        <link-id>analyzer.xe1-remote.ge0</link-id>
+        <link-id>local.xe1-middle.xe0</link-id>
       </link>
       <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
         <source>
-          <source-node>local</source-node>
-          <source-tp>xe0</source-tp>
+          <source-node>middle</source-node>
+          <source-tp>xe1</source-tp>
         </source>
         <destination>
           <dest-node>remote</dest-node>
           <dest-tp>xe0</dest-tp>
         </destination>
-        <link-id>local.xe0-remote.xe0</link-id>
+        <link-id>middle.xe1-remote.xe0</link-id>
       </link>
     </network>
   </networks>

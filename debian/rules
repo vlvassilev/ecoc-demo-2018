@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+%:
+	dh $@ --without autoreconf --without autoconf
+
+override_dh_install:
+	mkdir -p debian/tmp/opt/testsuite-h100-ecoc-demo
+	rsync --exclude .svn --exclude debian -a ./ debian/tmp/opt/testsuite-h100-ecoc-demo
+	dh_install
+

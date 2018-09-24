@@ -1,0 +1,5 @@
+#!/bin/bash -e
+echo "Traffic pattern #1"
+python ./monitor/report.py 4.xml 7.xml | tee traffic-report-1.txt
+echo "Traffic pattern #2"
+python ./monitor/report.py 8.xml 11.xml | tee traffic-report-2.txt

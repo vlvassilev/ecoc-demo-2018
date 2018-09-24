@@ -28,6 +28,10 @@ def yangcli_ok_script(yconn, yangcli_script):
 			assert(0)
 
 def step_1(network, conns, yconns, filter=filter):
+	result = yangcli(yconns['local'], 'discard-changes')
+	result = yangcli(yconns['middle'], 'discard-changes')
+	result = yangcli(yconns['remote'], 'discard-changes')
+	tntapi.network_commit(conns)
 
 
 	yangcli_script_remote='''

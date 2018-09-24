@@ -1,0 +1,2 @@
+#!/bin/bash -e
+set-net 3.xml

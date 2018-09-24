@@ -1,0 +1,3 @@
+#!/bin/bash -e
+get-net topology.xml 5.xml
+

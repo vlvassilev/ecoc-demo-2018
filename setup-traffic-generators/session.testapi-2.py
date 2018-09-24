@@ -97,12 +97,12 @@ merge /interfaces/interface[name='ge9'] -- type='ethernetCsmacd'
 #replace /interfaces/interface[name='ge1']/traffic-generator -- frame-size=1500 interframe-gap=15000 ether-type=1234 direction=ingress frames-per-burst=100 interburst-gap=150000
 #replace /interfaces/interface[name='ge2']/traffic-generator -- frame-size=1500 interframe-gap=15000 ether-type=1234 direction=ingress frames-per-burst=100 interburst-gap=150000
 #replace /interfaces/interface[name='ge3']/traffic-generator -- frame-size=1500 interframe-gap=15000 ether-type=1234 direction=ingress frames-per-burst=100 interburst-gap=150000
-replace /interfaces/interface[name='ge4']/traffic-generator -- frame-size=1500 interframe-gap=1500 ether-type=1234 direction=ingress frames-per-burst=100 interburst-gap=150000
-replace /interfaces/interface[name='ge5']/traffic-generator -- frame-size=1500 interframe-gap=1500 ether-type=1234 direction=ingress
-replace /interfaces/interface[name='ge6']/traffic-generator -- frame-size=1500 interframe-gap=1500 ether-type=1234 direction=ingress
-replace /interfaces/interface[name='ge7']/traffic-generator -- frame-size=1500 interframe-gap=1500 ether-type=1234 direction=ingress
-replace /interfaces/interface[name='ge8']/traffic-generator -- frame-size=1500 interframe-gap=1500 ether-type=1234 direction=ingress
-replace /interfaces/interface[name='ge9']/traffic-generator -- frame-size=1500 interframe-gap=1500 ether-type=1234 direction=ingress
+replace /interfaces/interface[name='ge4']/traffic-generator -- frame-size=1500 interframe-gap=64 ether-type=1234 direction=ingress
+replace /interfaces/interface[name='ge5']/traffic-generator -- frame-size=1500 interframe-gap=64 ether-type=1234 direction=ingress
+replace /interfaces/interface[name='ge6']/traffic-generator -- frame-size=1500 interframe-gap=64 ether-type=1234 direction=ingress
+replace /interfaces/interface[name='ge7']/traffic-generator -- frame-size=1500 interframe-gap=64 ether-type=1234 direction=ingress
+replace /interfaces/interface[name='ge8']/traffic-generator -- frame-size=1500 interframe-gap=64 ether-type=1234 direction=ingress
+replace /interfaces/interface[name='ge9']/traffic-generator -- frame-size=1500 interframe-gap=64 ether-type=1234 direction=ingress
 '''
 	yangcli_ok_script(yconns["local"], yangcli_script_local)
 	yangcli_ok_script(yconns["middle"], yangcli_script_middle)

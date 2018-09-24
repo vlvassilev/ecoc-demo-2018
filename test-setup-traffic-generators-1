@@ -1,4 +1,4 @@
 #!/bin/bash -e
-#python session.testapi.py --config=../topology.xml
+cd setup-traffic-generators
 python session.testapi-1.py --config=../topology.xml
 

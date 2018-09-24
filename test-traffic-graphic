@@ -1,0 +1,5 @@
+#!/bin/bash -e
+echo "Traffic pattern #1"
+./monitor/traffic-graphic-ecoc-demo --background=topology-wo-traffic.svg --before=4.xml --after=7.xml --output=traffic-graphic-1.svg
+echo "Traffic pattern #2"
+./monitor/traffic-graphic-ecoc-demo --background=topology-wo-traffic.svg --before=8.xml --after=11.xml --output=traffic-graphic-2.svg
