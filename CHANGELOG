@@ -1,3 +1,13 @@
+testsuite-h100-ecoc-demo (1.4) stable; urgency=medium
+
+  * Added ./test-odl-install script that install and configures OpenDaylight to mount
+    the 3 nodes
+  * Added ./test-odl-clear-traffic-generators that deletes/stops all traffic generators
+    in the network using OpenDaylight northbound RESTCONF interface instead of direct
+    connection to the nodes
+
+ -- Vladimir Vassilev <vladimir@transpacket.com>  Tue, 25 Sep 2018 02:59:39 +0200
+
 testsuite-h100-ecoc-demo (1.3) stable; urgency=medium
 
   * Removed dependencies on commercial devices.

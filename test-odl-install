@@ -1,0 +1,80 @@
+#!/bin/bash -e
+# Installs and starts OpenDaylight and mounts the 3 nodes as Southbound NETCONF devices
+
+topology_file=`pwd`/topology.xml
+cd
+if [ -d "distribution-karaf-0.4.4-Beryllium-SR4" ]; then
+  echo "There is existing installation of distribution-karaf-0.4.4-Beryllium-SR4"
+  exit 0
+fi
+
+if [ ! -f "./distribution-karaf-0.4.4-Beryllium-SR4.tar.gz" ]; then
+  wget http://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distribution-karaf/0.4.4-Beryllium-SR4/distribution-karaf-0.4.4-Beryllium-SR4.tar.gz
+fi
+
+tar -xzvf distribution-karaf-0.4.4-Beryllium-SR4.tar.gz
+
+cd distribution-karaf-0.4.4-Beryllium-SR4/
+
+./bin/start
+sleep 30
+./bin/client -u karaf 'feature:list --installed'
+
+#install NETCONF support
+./bin/client -u karaf 'feature:install odl-netconf-all odl-netconf-ssh odl-netconf-connector-all'
+#install GUI support
+./bin/client -u karaf 'feature:install odl-dlux-all'
+#install topology configuration support
+./bin/client -u karaf 'feature:install odl-restconf-all'
+./bin/client -u karaf 'feature:install odl-netconf-topology'
+#odl-netconf-clustered-topology
+./bin/client -u karaf feature:list
+
+#Change password from admin to ecocdemo
+#cat > user.json << EOF
+#{
+#"name":"admin",
+#"description":"admin account",
+#"enabled":"true",
+#"email":"",
+#"password":"ecocdemo"
+#}
+#EOF
+#curl -u admin:admin -X PUT -H "Content-Type: application/json" --data-binary @./user.json http://localhost:8181/auth/v1/users/admin@sdn
+
+add_netconf_node() {
+my_node_name="'"$1"'"
+my_host=$2
+my_port=$3
+my_user=$4
+my_pass=$5
+
+cat > myscript.txt << EOF
+merge /modules/module[name=${my_node_name}][type='sal-netconf-connector'] -- address=${my_host} sal-netconf:port=${my_port} tcp-only=false username=${my_user} password=${my_pass} sal-netconf:event-executor/type=netty-event-executor sal-netconf:event-executor/name=global-event-executor sal-netconf:binding-registry/type=binding-broker-osgi-registry sal-netconf:binding-registry/name=binding-osgi-broker sal-netconf:dom-registry/type=dom-broker-osgi-registry sal-netconf:dom-registry/name=dom-broker sal-netconf:client-dispatcher/type=netconf-client-dispatcher sal-netconf:client-dispatcher/name=global-netconf-dispatcher sal-netconf:processing-executor/type=threadpool sal-netconf:processing-executor/name=global-netconf-processing-executor sal-netconf:keepalive-executor/type=scheduled-threadpool sal-netconf:keepalive-executor/name=global-netconf-ssh-scheduled-executor
+commit
+EOF
+# If commit is not done in the same session as the merge the changes to candidate are discarded autmatically .. thus the --run-script instead 2 sequential --run-command calls for merge and commit.
+yangcli --server=localhost --ncport=1830 --user=admin --password=admin --dump-session=/tmp/yangcli- --keep-session-model-copies-after-compilation=true --batch-mode --run-script=myscript.txt
+#--log-level=debug4
+
+}
+
+get_connect_parm() {
+  xmlstarlet sel -N nc="urn:ietf:params:xml:ns:netconf:base:1.0" -N nd="urn:ietf:params:xml:ns:yang:ietf-network" -N netconf-node="urn:tntapi:netconf-node" -t -v '//nc:config/nd:networks/nd:network/nd:node[nd:node-id="'$2'"]/netconf-node:netconf-connect-params/netconf-node:'$1 $topology_file
+}
+
+#add_netconf_node left 185.35.202.50 830 pi ecocdemo
+add_netconf_node left   `get_connect_parm server left`   `get_connect_parm ncport left`   `get_connect_parm user left`   `get_connect_parm password left`
+add_netconf_node middle `get_connect_parm server middle` `get_connect_parm ncport middle` `get_connect_parm user middle` `get_connect_parm password middle`
+add_netconf_node right  `get_connect_parm server right`  `get_connect_parm ncport right`  `get_connect_parm user right`  `get_connect_parm password right`
+
+
+sleep 30
+#enable northbound MD-SAL interface - opens port 2830
+./bin/client -u karaf 'feature:install odl-netconf-mdsal'
+sleep 90
+./bin/client -u karaf 'feature:install odl-mdsal-apidocs'
+sleep 30
+./bin/client -u karaf 'feature:install odl-openflowplugin-flow-services-rest'
+sleep 30
+./bin/client -u karaf 'feature:install odl-openflowplugin-flow-services-ui'

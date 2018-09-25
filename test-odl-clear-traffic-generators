@@ -1,0 +1,3 @@
+#!/bin/bash -e
+cd odl-clear-traffic-generators/
+./run.sh

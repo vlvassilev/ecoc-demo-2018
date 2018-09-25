@@ -13,7 +13,7 @@
  wget -O - http://yuma123.org/repos/yuma123.gpg.key | apt-key add -
  apt-get update
 
- apt-get -y install h100-ecoc-demo
+ apt-get -y install testsuite-h100-ecoc-demo
  cd /opt/testsuite-h100-ecoc-demo
  autoreconf -i -f
  ./configure
@@ -61,6 +61,16 @@ Report time: 20:25:19
 +-----------+--------------+-------------+--------------+---------------+
 </nowiki>
 
+After the monitor is started one would need to enable traffic and change its parameters from another terminal. Here the traffic generators and analysers are started and stopped:
+
+ ./test-setup-traffic-analyzers ; ./test-setup-traffic-generators-1
+ # traffic pattern 1
+ ./test-clear-traffic-generators
+ # no traffic
+ ./test-setup-traffic-analyzers ; ./test-setup-traffic-generators-2
+ # traffic pattern 2
+ ...
+
 ==Device side==
 There are 3 scripts in ./setup (run-netconfd-local.sh, run-netconfd-middle.sh, run-netconfd-remote.sh) that can start the netconfd instances for each node with the correct parameters. Use those to either connect to the VCU-110 cards directly or to connect to another netconfd providing register access. In case there is external host that runs netconfd make sure the parameters are identical e.g. all expected modules are loaded.
 
@@ -78,6 +88,17 @@ Further in the document the elements will be referred to as:
 * analyzer (optional)
 
 Details about the actual networking addresses and authorization are specified in the topology.xml file and if there is a change in the setup this file needs to be updated before running.
+
+=OpenDaylight=
+The 3 devices can be mounted as NETCONF devices in OpenDaylight southbound interface. The testsuite includes the ./test-odl-install testcase that downloads and installs OpenDaylight (Beryllium-SR4) and configures it using yangcli to mount the 3 nodes.
+Once this testcase completes one can use the ./test-odl-clear-traffic-generators to stop all traffic in identical way as the non-odl ./test-clear-traffic-generators-[1,2]. This testcase is added as proof of concept that the mounted devices configuration is correctly responding to interaction with OpenDaylight Northbound RESTCONF interface.
+
+The following links can be used to access OpenDaylight web interface (user:admin password:admin):
+
+* http://localhost:8080/index.html - DLUX Web GUI
+* http://localhost:8080/restconf/config/network-topology:network-topology/topology/topology-netconf/node/middle/yang-ext:mount/ - configuration of 'middle'
+
+For more information check the OpenDaylight project documentation.
 
 =References=
 # Transpacket AS, "VCU-110 Prototype r1.6"

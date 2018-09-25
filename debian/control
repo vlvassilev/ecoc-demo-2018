@@ -25,7 +25,9 @@ Depends: ${misc:Depends}, make, autoconf, libtool,
   transpacket (>= 5.3),
   transpacket-base,
   yangcli,
-  yangdump
+  yangdump,
+  xmlstarlet,
+  curl
 Multi-Arch: foreign
 Description: Testsuite with validation and monitoring scripts for ECOC 2018 demo
  This package installs a testsuite under /opt/testsuite-h100-ecoc-demo
